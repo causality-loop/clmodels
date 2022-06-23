@@ -1,0 +1,30 @@
+Package: clmodels
+Title: clmodels
+Version: 0.0.0.9000
+Authors@R: person("causality", "loop", , "dynaflat_eline@slmail.me", role = c("aut",
+         "cre"))
+Maintainer: causality loop <dynaflat_eline@slmail.me>
+Description: Quantitative models used in several repos.
+License: GPL (>= 3)
+URL: https://github.com/causality-loop/clmodels
+BugReports: https://github.com/causality-loop/clmodels/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.0
+Imports: 
+    clhelpers,
+    data.table,
+    stats,
+    dplyr,
+    magrittr,
+    parallel,
+    quantmod,
+    tidyquant,
+    tseries,
+    TTR,
+    utils,
+    xts,
+    zoo
+Remotes:
+    causality-loop/clhelpers
+
