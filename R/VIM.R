@@ -130,7 +130,7 @@ VIM <- function(deploy = TRUE, model_units = 1)
 
     rets <- c(tidyquant::tq_index('DOW')$symbol, 'SPY') %>%
       sort %>%
-      clhelpers::make_rets_xts
+      clhelpers::make_rets_xts()
 
     units_and_vix_list <- units_vim(rets, vix_close_xts, model_units) %T>%
       {
