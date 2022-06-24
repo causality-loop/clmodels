@@ -32,7 +32,7 @@ units_vim <- function(rets_xts, vix_close_xts, model_units)
   rets <- rets_xts %>% .[,names(.) != 'SPY']
   ep <- clean_endpoints(rets)
   empty_vec <- data.frame(t(rep(0, ncol(rets)))) %>% `names<-`(names(rets))
-  ccr <- get('calculate_cumulative_returns')
+  ccr <- clhelpers::calculate_cumulative_returns
   asset_units_list <- list()
   vix_rownum_list <- list()
 
