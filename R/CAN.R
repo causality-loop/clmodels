@@ -20,7 +20,7 @@ CAN <- function(deploy = TRUE, model_units = 1.5)
 
     rets <- rets_xts
     ep <- clean_endpoints(rets)
-    ccr <- get('calculate_cumulative_returns')
+    ccr <- clhelpers::calculate_cumulative_returns
 
     units_list <- parallel::mclapply(seq(length(ep)-12), function(x) {
 
