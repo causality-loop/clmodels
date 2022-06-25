@@ -24,7 +24,8 @@ Imports:
     TTR,
     utils,
     xts,
-    zoo
+    zoo,
+    quadprog
 Remotes:
     causality-loop/clhelpers
 

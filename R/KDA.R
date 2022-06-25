@@ -1,3 +1,9 @@
+if (getRversion() >= '2.15.1') {
+  utils::globalVariables(c('.', 'ep', 'deploy', '%>%<-', 'lapply<-'), 
+                         utils::packageName()) 
+}
+
+#' @importFrom quadprog solve.QP
 units_kda <- function(deploy, model_units)
 {
 
@@ -16,7 +22,7 @@ units_kda <- function(deploy, model_units)
     stats::na.omit() %>%
     utils::tail((-!deploy) + deploy*430) %>%
 
-  ep <- clmodels::clean_endpoints(rets)
+  ep <- clean_endpoints(rets)
    
   lapply(1:(length(ep)-12), function(x) {
 
@@ -107,7 +113,7 @@ units_kda_no_treasuries <- function(rets, model_units = 1.5)
     stats::na.omit() %>%
     utils::tail((-!deploy) + deploy*430)
 
-  ep <- clmodels::clean_endpoints(rets)
+  ep <- clean_endpoints(rets)
 
   lapply(1:(length(ep)-12), function(x) {
 
