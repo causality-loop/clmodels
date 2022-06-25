@@ -89,7 +89,7 @@ units_kda <- function(deploy, model_units)
 
 }
 
-units_kda_no_treasury <- function(rets, model_units = 1.5)
+units_kda_no_treasuries <- function(rets, model_units = 1.5)
 {
 
   mom_wts <- c(12, 4, 2, 1)
@@ -168,13 +168,6 @@ units_kda_no_treasury <- function(rets, model_units = 1.5)
 #' @details See References.
 #' @references
 #' \url{https://quantstrattrader.com/2019/02/27/kda-robustness-results/}
-#' @examples 
-#' \dontrun{
-#' if(interactive()){
-#'  ## non-treasury KDA variant
-#'  KDA(units_fun = 'units_kda_no_treasury')
-#'  }
-#' }
 #' @export 
 #' @importFrom utils tail head
 #' @importFrom clhelpers show_special_day
@@ -194,3 +187,31 @@ KDA <- function(deploy = TRUE, model_units = 1.5, units_fun = 'units_kda')
 
 }
 
+#' @importFrom magrittr '%<>%' 
+#' @title KDA_no_treasuries
+#' @description Kipnis Defensive Adaptive Asset Allocation without IEF and TLT.
+#' @param deploy boolean, TRUE if the model should be deployed in a live trading environment, FALSE if it's just being used for testing/research, Default: TRUE
+#' @param model_units numeric, the number of units to allocate to this model, Default: 1.5
+#' @param units_fun character, the KDA variant's function name, Default: 'units_kda'
+#' @return An xts of units to be combined with an unconditional return series to form portfolio (ie condition) returns.
+#' @details See References.
+#' @references
+#' \url{https://quantstrattrader.com/2019/02/27/kda-robustness-results/}
+#' @export 
+#' @importFrom utils tail head
+#' @importFrom clhelpers show_special_day
+KDA_no_treasuries <- function(deploy = TRUE, model_units = 1.5, units_fun = 'units_kda_no_treasuries') 
+{
+
+  # units_fun can be units_kda or units_kda_no_treasury
+  out <- get(units_fun)(deploy, model_units)
+
+  if (deploy) {
+    out %<>% 
+      utils::tail(2 - any(clhelpers::show_special_day() == 'EOM')) %>% 
+      utils::head(1)
+  }
+
+  out
+
+}
