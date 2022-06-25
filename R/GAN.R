@@ -27,8 +27,7 @@ GAN <- function(deploy = TRUE, model_units = 1)
       { list( ., c(rep(NA, 3), utils::head(., -3)) %T>% {.[.==1] <- 0}) } %>%
       dplyr::coalesce(!!!.) %>%
       zoo::na.locf(na.rm = FALSE) %T>% 
-      {.[is.na(.)] <- 0} %>%
-      {. * model_units}
+      {.[is.na(.)] <- 0}
   }) %>% 
     do.call(what = cbind) %>%
     xts::reclass(rets) %>%
@@ -41,6 +40,7 @@ GAN <- function(deploy = TRUE, model_units = 1)
       function(x) max.col(t(x), 'first') * as.numeric(sum(x) != 0)))
   }) %>% 
     xts::reclass(gan_units) %>% 
+    {. * model_units} %>%
     `names<-`(names(gan_units))
 
   if (deploy) out %>% utils::tail(2 - any(clhelpers::show_special_day() == 'EOW')) %>% utils::head(1)
