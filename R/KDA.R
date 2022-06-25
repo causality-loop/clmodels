@@ -2,8 +2,8 @@ units_kda <- function(deploy, model_units)
 {
 
   mom_wts <- c(12, 4, 2, 1)
-  kda_symbols <- c('SPY', 'VGK',   'EWJ',  'EEM',  'VNQ',  'RWX',  'IEF',  
-    'TLT', 'DBC', 'GLD', 'VWO', 'AGG')  
+  kda_symbols <- c('SPY', 'VGK', 'EWJ', 'EEM', 'VNQ', 'RWX', 'IEF', 'TLT', 
+    'DBC', 'GLD', 'VWO', 'AGG')  
   empty_vec <- data.frame(t(rep(0, 10))) %>% `names<-`(kda_symbols[1:10])
 
   rets <- lapply(kda_symbols, function(x) {
