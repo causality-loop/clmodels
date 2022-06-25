@@ -8,7 +8,7 @@
 #' \url{https://quantstrattrader.com/2019/02/27/kda-robustness-results/}
 #' @export 
 #' @importFrom parallel mclapply
-#' @importFrom xts xts
+#' @importFrom xts xts last
 #' @importFrom zoo index
 CAN <- function(deploy = TRUE, model_units = 1.5)
 {
@@ -38,7 +38,7 @@ CAN <- function(deploy = TRUE, model_units = 1.5)
       invested_assets <- invested_assets * pct_aggressive
       if (pct_aggressive == 1) invested_assets <- invested_assets * model_units
 
-      xts::xts(invested_assets, order.by = utils::tail(zoo::index(ret_subset), 1))
+      xts::xts(invested_assets, order.by = xts::last(zoo::index(ret_subset)))
 
     })
 
