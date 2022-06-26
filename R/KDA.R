@@ -23,7 +23,7 @@ units_kda <- function(deploy, model_units)
     `names<-`(kda_symbols) %>%
     do.call(what = xts::merge.xts) %>%
     stats::na.omit() %>%
-    utils::tail((-!deploy) + deploy*430) %>%
+    utils::tail((-!deploy) + deploy*430)
 
   ep <- clean_endpoints(rets)
    
