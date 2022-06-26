@@ -98,7 +98,7 @@ units_kda <- function(deploy, model_units)
 
 }
 
-units_kda_no_treasuries <- function(rets, model_units = 1.5)
+units_kda_no_treasuries <- function(deploy, model_units = 1.5)
 {
 
   mom_wts <- c(12, 4, 2, 1)
