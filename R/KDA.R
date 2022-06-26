@@ -12,6 +12,9 @@ units_kda <- function(deploy, model_units)
     'DBC', 'GLD', 'VWO', 'AGG')  
   empty_vec <- data.frame(t(rep(0, 10))) %>% `names<-`(kda_symbols[1:10])
 
+  if (!dir.exists('prices')) 
+    stop("please create 'prices' directory (see documentation)")
+
   rets <- lapply(kda_symbols, function(x) {
     readRDS(file.path('prices', x))[,4] %>%
       clhelpers::calculate_returns() %>%
