@@ -10,6 +10,7 @@
 #' @importFrom parallel mclapply
 #' @importFrom xts xts last
 #' @importFrom zoo index
+#' @importFrom stats na.omit
 CAN <- function(deploy = TRUE, model_units = 1.5)
 {
 
@@ -18,7 +19,7 @@ CAN <- function(deploy = TRUE, model_units = 1.5)
   units_can <- function(rets_xts, model_units)
   {
 
-    rets <- rets_xts
+    rets <- stats::na.omit(rets_xts)
     ep <- clean_endpoints(rets)
     ccr <- clhelpers::calculate_cumulative_returns
 
