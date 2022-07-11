@@ -15,13 +15,13 @@ KDA_no_treasuries(
 
 \item{model_units}{numeric, the number of units to allocate to this model, Default: 1.5}
 
-\item{units_fun}{character, the KDA variant's function name, Default: 'units_kda'}
+\item{units_fun}{character, the KDA variant's function name, Default: 'units_kda_no_treasuries'}
 }
 \value{
 An xts of units to be combined with an unconditional return series to form portfolio (ie condition) returns.
 }
 \description{
-Kipnis Defensive Adaptive Asset Allocation without IEF and TLT.
+Kipnis Defensive Adaptive Asset Allocation without IEF/TLT, and with FXI replacing VGK.
 }
 \details{
 See References.

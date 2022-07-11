@@ -102,7 +102,7 @@ units_kda_no_treasuries <- function(deploy, model_units = 1.5)
 {
 
   mom_wts <- c(12, 4, 2, 1)
-  kda_symbols <- c('SPY', 'VGK', 'EWJ', 'EEM', 'VNQ', 'RWX', 'DBC', 'GLD', 
+  kda_symbols <- c('SPY', 'FXI', 'EWJ', 'EEM', 'VNQ', 'RWX', 'DBC', 'GLD', 
     'VWO', 'AGG')  
   empty_vec <- data.frame(t(rep(0, 8))) %>% `names<-`(kda_symbols[1:8])
 
@@ -183,7 +183,6 @@ units_kda_no_treasuries <- function(deploy, model_units = 1.5)
 KDA <- function(deploy = TRUE, model_units = 1.5, units_fun = 'units_kda') 
 {
 
-  # units_fun can be units_kda or units_kda_no_treasury
   out <- get(units_fun)(deploy, model_units)
 
   if (deploy) {
@@ -198,10 +197,10 @@ KDA <- function(deploy = TRUE, model_units = 1.5, units_fun = 'units_kda')
 
 #' @importFrom magrittr '%<>%' 
 #' @title KDA_no_treasuries
-#' @description Kipnis Defensive Adaptive Asset Allocation without IEF and TLT.
+#' @description Kipnis Defensive Adaptive Asset Allocation without IEF/TLT, and with FXI replacing VGK.
 #' @param deploy boolean, TRUE if the model should be deployed in a live trading environment, FALSE if it's just being used for testing/research, Default: TRUE
 #' @param model_units numeric, the number of units to allocate to this model, Default: 1.5
-#' @param units_fun character, the KDA variant's function name, Default: 'units_kda'
+#' @param units_fun character, the KDA variant's function name, Default: 'units_kda_no_treasuries'
 #' @return An xts of units to be combined with an unconditional return series to form portfolio (ie condition) returns.
 #' @details See References.
 #' @references
@@ -212,7 +211,6 @@ KDA <- function(deploy = TRUE, model_units = 1.5, units_fun = 'units_kda')
 KDA_no_treasuries <- function(deploy = TRUE, model_units = 1.5, units_fun = 'units_kda_no_treasuries') 
 {
 
-  # units_fun can be units_kda or units_kda_no_treasury
   out <- get(units_fun)(deploy, model_units)
 
   if (deploy) {
